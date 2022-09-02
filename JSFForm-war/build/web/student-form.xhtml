@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Student onboarding form
+        <h:form prependId="false">
+            <ui:fragment rendered="#{not empty facesContext.messageList}">
+                 <h:messages  /> 
+            </ui:fragment>
+            <br></br>
+            <label for="firstname" >First name:</label>
+            <h:inputText  value="#{admissionController.firstName}" id="firstname"  required="true" requiredMessage="Firstname required" maxlength="20"/>
+             <br></br>
+             <label for="lastname" >Last name:</label>
+             <h:inputText value="#{admissionController.lastName}" id="lastname"  required="true" requiredMessage="Lastname required" maxlength="20"/>
+             <br></br>
+             <label for="dob" >Date of birth:</label>
+             <h:inputText value="#{admissionController.dateOfBirth}" id="dob"  required="true" requiredMessage="Date of birth required">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
+                <f:validator validatorId="age.validator"/>
+             </h:inputText>
+             <br></br>
+             <h:commandButton action="#{admissionController.processForm()}" value="Submit" ></h:commandButton>
+        </h:form>
+    </h:body>
+</html>
+
